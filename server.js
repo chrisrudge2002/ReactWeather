@@ -6,10 +6,10 @@ let app = express();
 
 // Re-direct all https traffic to use http
 app.use(function(req, res, next) {
-	if (req.headers['x-forwarded-proto'] === 'http') {
-		next();
-	} else {
+	if (req.headers['x-forwarded-proto'] === 'https') {
 		res.redirect(`http://${req.hostname}${req.url}`);
+	} else {
+		next();
 	}
 });
 
